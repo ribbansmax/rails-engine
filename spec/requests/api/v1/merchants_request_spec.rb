@@ -10,20 +10,15 @@ describe "Merchants API" do
 
     merchants = JSON.parse(response.body, symbolize_names: true)
 
-    merchants.each do |merchant|
+    merchants[:data].each do |merchant|
 
-      expect(merchant).to have_key(:data)
-      expect(merchant[:data]).to be_a(Hash)
+      expect(merchant).to have_key(:id)
+      expect(merchant[:id]).to be_an(Integer)
 
-      data = merchant[:data]
+      expect(merchant).to have_key(:attributes)
+      expect(merchant[:attributes]).to be_a(Hash)
 
-      expect(data).to have_key(:id)
-      expect(data[:id]).to be_an(Integer)
-
-      expect(data).to have_key(:attributes)
-      expect(data[:attributes]).to be_a(Hash)
-
-      attributes = data[:attributes]
+      attributes = merchant[:attributes]
 
       expect(attributes).to have_key(:name)
       expect(attributes[:name]).to be_a(String)
