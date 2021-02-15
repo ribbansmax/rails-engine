@@ -13,7 +13,7 @@ describe "Merchants API" do
     merchants[:data].each do |merchant|
 
       expect(merchant).to have_key(:id)
-      expect(merchant[:id]).to be_an(Integer)
+      expect(merchant[:id]).to be_a(String)
 
       expect(merchant).to have_key(:attributes)
       expect(merchant[:attributes]).to be_a(Hash)

@@ -13,7 +13,7 @@ describe "Items API" do
     items[:data].each do |item|
 
       expect(item).to have_key(:id)
-      expect(item[:id]).to be_an(Integer)
+      expect(item[:id]).to be_an(String)
 
       expect(item).to have_key(:attributes)
       expect(item[:attributes]).to be_a(Hash)
