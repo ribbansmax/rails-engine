@@ -24,4 +24,34 @@ describe "Merchants API" do
       expect(attributes[:name]).to be_a(String)
     end
   end
+
+  it "takes a page number and only returns requested results" do
+    create_list(:merchant, 41)
+
+    get '/api/v1/merchants'
+
+    expect(response).to be_successful
+
+    merchants = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchants[:data].length).to eq(20)
+
+    get '/api/v1/merchants?page=2'
+
+    merchants = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchants[:data].length).to eq(20)
+
+    get '/api/v1/merchants?page=3'
+
+    merchants = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchants[:data].length).to eq(1)
+
+    get '/api/v1/merchants?page=2&perPage=30'
+
+    merchants = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchants[:data].length).to eq(11)
+  end
 end

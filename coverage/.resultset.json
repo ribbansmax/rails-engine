@@ -1,8 +1,10 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/magicmax/turing/mod3/rails-engine/app/models/customer.rb": {
+      "/Users/magicmax/turing/mod3/rails-engine/app/models/merchant.rb": {
         "lines": [
+          1,
+          1,
           1,
           null
         ]
@@ -14,44 +16,12 @@
           null
         ]
       },
-      "/Users/magicmax/turing/mod3/rails-engine/app/models/invoice_item.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/magicmax/turing/mod3/rails-engine/app/models/invoice.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/magicmax/turing/mod3/rails-engine/app/models/item.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/magicmax/turing/mod3/rails-engine/app/models/merchant.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null
-        ]
-      },
       "/Users/magicmax/turing/mod3/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
         "lines": [
           1,
           1,
-          1,
+          4,
+          4,
           null,
           null
         ]
@@ -66,21 +36,29 @@
         "lines": [
           1,
           1,
+          4,
+          null,
+          52,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           1,
           null,
-          3,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
+          1,
+          4,
+          4,
+          4,
           null,
           null
         ]
       }
     },
-    "timestamp": 1613341438
+    "timestamp": 1613407844
   }
 }
