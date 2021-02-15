@@ -53,5 +53,11 @@ describe "Merchants API" do
     merchants = JSON.parse(response.body, symbolize_names: true)
 
     expect(merchants[:data].length).to eq(11)
+
+    get '/api/v1/merchants?page=2&perPage=300'
+
+    merchants = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchants[:data].length).to eq(0)
   end
 end

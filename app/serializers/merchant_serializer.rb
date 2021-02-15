@@ -1,15 +1,19 @@
 class MerchantSerializer
   def self.format_merchants(page, per_page)
-    {
-      data: merchants(page, per_page).map do |merchant|
-        {
-          id: merchant.id,
-          attributes: {
-            name: merchant.name
+    if merchants = merchants(page, per_page)
+      {
+        data: merchants.map do |merchant|
+          {
+            id: merchant.id,
+            attributes: {
+              name: merchant.name
+            }
           }
-        }
-      end
-    }
+        end
+      }
+    else
+      { data: [] }
+    end
   end
 
   private
