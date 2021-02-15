@@ -16,6 +16,20 @@ class MerchantSerializer
     end
   end
 
+  def self.format_merchant(id)
+    merchant = Merchant.find(id)
+    {
+      data:
+      {
+        id: merchant.id.to_s,
+        type: "merchant",
+        attributes: {
+          name: merchant.name
+        }
+      }
+    }
+  end
+
   private
 
   def self.merchants(page, per_page)
