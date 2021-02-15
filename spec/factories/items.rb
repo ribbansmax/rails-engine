@@ -3,6 +3,6 @@ FactoryBot.define do
     name { Faker::Vehicle.make_and_model }
     description { Faker::Lorem.sentence }
     unit_price { 1.5 }
-    merchant_id { nil }
+    association :merchant
   end
 end

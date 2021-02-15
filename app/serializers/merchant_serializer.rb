@@ -30,6 +30,24 @@ class MerchantSerializer
     }
   end
 
+  def self.format_items(id)
+    merchant = Merchant.find(id)
+    {
+      data: merchant.items.map do |item|
+        {
+          id: item.id.to_s,
+          type: "item",
+          attributes: {
+            name: item.name,
+            description: item.description,
+            unit_price: item.unit_price,
+            merchant_id: item.merchant_id
+          }
+        }
+      end
+    }
+  end
+
   private
 
   def self.merchants(page, per_page)

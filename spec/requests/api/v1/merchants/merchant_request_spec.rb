@@ -22,11 +22,5 @@ describe "Merchant API" do
 
     expect(attributes).to have_key(:name)
     expect(attributes[:name]).to be_a(String)
-
-    # expect(attributes).to have_key(:description)
-    # expect(attributes[:description]).to be_a(String)
-
-    # expect(attributes).to have_key(:unit_price)
-    # expect(attributes[:unit_rice]).to be_a(Float)
   end
 end

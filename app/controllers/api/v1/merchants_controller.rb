@@ -6,4 +6,8 @@ class Api::V1::MerchantsController < ApplicationController
   def show
     render json: MerchantSerializer.format_merchant(params[:id])
   end
+
+  def items_index
+    render json: MerchantSerializer.format_items(params[:id])
+  end
 end

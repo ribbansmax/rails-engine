@@ -16,9 +16,22 @@
           null
         ]
       },
+      "/Users/magicmax/turing/mod3/rails-engine/app/models/item.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
       "/Users/magicmax/turing/mod3/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
         "lines": [
           1,
+          1,
+          0,
+          null,
+          null,
           1,
           0,
           null,
@@ -56,8 +69,27 @@
           null,
           null,
           1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           1,
           1,
+          1,
+          null,
+          30,
+          null,
+          null,
+          null,
           null,
           null,
           null,
@@ -79,6 +111,6 @@
         ]
       }
     },
-    "timestamp": 1613409897
+    "timestamp": 1613411747
   }
 }
