@@ -48,13 +48,13 @@ describe "Merchants API" do
 
     expect(merchants[:data].length).to eq(1)
 
-    get '/api/v1/merchants?page=2&perPage=30'
+    get '/api/v1/merchants?page=2&per_page=30'
 
     merchants = JSON.parse(response.body, symbolize_names: true)
 
     expect(merchants[:data].length).to eq(11)
 
-    get '/api/v1/merchants?page=2&perPage=300'
+    get '/api/v1/merchants?page=2&per_page=300'
 
     merchants = JSON.parse(response.body, symbolize_names: true)
 
