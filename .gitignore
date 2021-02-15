@@ -4,6 +4,7 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+/coverage/
 # Ignore bundler config.
 /.bundle
 
@@ -21,5 +22,3 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-/coverage
-./coverage
