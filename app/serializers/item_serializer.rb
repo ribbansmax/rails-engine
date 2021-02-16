@@ -20,6 +20,23 @@ class ItemSerializer
     end
   end
 
+  def self.format_item(id)
+    item = Item.find(id)
+    {
+      data:
+      {
+        id: item.id.to_s,
+        type: "item",
+        attributes: {
+          name: item.name,
+          description: item.description,
+          unit_price: item.unit_price,
+          merchant_id: item.merchant_id
+        }
+      }
+    }
+  end
+
   private
 
   def self.items(page, per_page)
