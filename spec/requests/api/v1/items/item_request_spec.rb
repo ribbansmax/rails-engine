@@ -49,4 +49,29 @@ describe "Item API" do
     expect(item.unit_price).to eq(item_params[:unit_price])
     expect(item.merchant_id).to eq(item_params[:merchant_id])
   end
+
+  it "can update an existing item" do
+    merchant = create(:merchant)
+    item = create(:item, merchant_id: merchant.id)
+    new_params = attributes_for(:item, merchant_id: merchant.id)
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+    patch "/api/v1/items/#{item.id}", headers: headers, params: JSON.generate(item: new_params)
+
+    expect(response).to be_successful
+    expect(Item.last.name).to eq(new_params[:name])
+    expect(Item.last.description).to eq(new_params[:description])
+    expect(Item.last.unit_price).to eq(new_params[:unit_price])
+    expect(Item.last.merchant_id).to eq(new_params[:merchant_id])
+  end
+
+  it "can delete an existing item" do
+    merchant = create(:merchant)
+    item = create(:item, merchant_id: merchant.id)
+
+    delete "/api/v1/items/#{item.id}", headers: headers, params: JSON.generate(item: {id: item.id})
+
+    expect(response).to be_successful
+    expect(Item.last).to eq(nil)
+  end
 end

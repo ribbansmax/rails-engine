@@ -11,6 +11,14 @@ class Api::V1::ItemsController < ApplicationController
     render json: Item.create!(item_params)
   end
 
+  def update
+    Item.find(params[:id]).update(item_params)
+  end
+
+  def destroy
+    Item.find(params[:id]).destroy
+  end
+
   private
 
   def item_params
