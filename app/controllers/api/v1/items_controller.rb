@@ -18,10 +18,8 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def items
-    page = params[:page]
-    per_page = params[:per_page]
-    page = 1 if page.nil?
-    per_page = 20 if per_page.nil?
+    page = params[:page] || 1
+    per_page = params[:per_page] || 20
     Item.all[((page.to_i - 1) * per_page.to_i)..(page.to_i * per_page.to_i - 1)] || []
   end
 end
