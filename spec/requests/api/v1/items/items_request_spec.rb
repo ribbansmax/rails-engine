@@ -32,5 +32,13 @@ describe "Items API" do
       expect(attributes).to have_key(:merchant_id)
       expect(attributes[:merchant_id]).to be_an(Integer)
     end
+
+    get '/api/v1/items?page=2'
+
+    expect(response).to be_successful
+
+    items = JSON.parse(response.body, symbolize_names: true)
+
+    expect(items[:data]).to eq([])
   end
 end
