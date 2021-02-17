@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   has_many :invoices, through: :invoice_items
 
   def self.search(name)
-    where('name LIKE ?', "%#{name}%") || {}
+    # note- I think in searching for hArU
+    where('name LIKE ?', "%#{name}%") || { data: []}
   end
 end
