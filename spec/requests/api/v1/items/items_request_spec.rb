@@ -41,4 +41,9 @@ describe "Items API" do
 
     expect(items[:data]).to eq([])
   end
+
+  it "sends the top x items by revenue" do
+    items = create_list(:item, 10)
+    invoice = create(:invoice)
+  end
 end
