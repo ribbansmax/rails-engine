@@ -74,4 +74,15 @@ describe "Item API" do
     expect(response).to be_successful
     expect(Item.last).to eq(nil)
   end
+
+  it "can give merchant data" do
+    merchant = create(:merchant)
+    item = create(:item, merchant_id: merchant.id)
+
+    get "/api/v1/items/#{item.id}/merchant"
+
+    expect(response).to be_successful
+    merchant_info = JSON.parse(response.body, symbolize_names: true)
+    expect(merchant_info[:data][:attributes][:name]).to eq(merchant.name)
+  end
 end
