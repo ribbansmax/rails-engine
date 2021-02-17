@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'class methods' do
+    it "can search by name" do
+      
+    end
+  end
 end

@@ -5,7 +5,7 @@ class Item < ApplicationRecord
 
   def self.name_search(name)
     # note- searching for hArU
-    where('name LIKE ?', "%#{name}%") || { data: []}
+    where('name ILIKE ?', "%#{name}%") || { data: []}
   end
 
   def self.params_check(params)

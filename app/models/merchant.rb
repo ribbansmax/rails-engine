@@ -3,6 +3,6 @@ class Merchant < ApplicationRecord
   has_many :invoices
 
   def self.search(name)
-    where('name LIKE ?', "%#{name}%").first || {}
+    where('name ILIKE ?', "%#{name}%").first || {}
   end
 end

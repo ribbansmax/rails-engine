@@ -1,8 +1,8 @@
 class Api::V1::Items::SearchController < ApplicationController
   def index
-    if Item.params_check(params)
+    if Item.params_check(params) && params
       if params[:name]
-        items = Item.name_search(params[:name].downcase)
+        items = Item.name_search(params[:name])
       else
         items = Item.values_search(params)
       end
