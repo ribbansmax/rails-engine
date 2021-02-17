@@ -16,7 +16,7 @@ class Api::V1::ItemsController < ApplicationController
       item = Item.find(params[:id])
       item.update!(item_params)
       render json: ItemSerializer.new(item)
-    rescue 
+    rescue
       render json: {"error" => {}}, status: 404
     end
   end
