@@ -43,7 +43,27 @@ describe "Items API" do
   end
 
   it "sends the top x items by revenue" do
-    items = create_list(:item, 10)
-    invoice = create(:invoice)
+    merchant = create(:merchant)
+    customer = create(:customer)
+    items = create_list(:item, 11)
+    invoice = create(:invoice, merchant: merchant, customer: customer)
+    transaction = create(:transaction, invoice: invoice, result: "success")
+    items.each_with_index do |item, index|
+      create(:invoice_item, item: item, invoice: invoice, quantity: (20 - index))
+    end
+
+    get "/api/v1/items/revenue"
+
+    expect(response).to be_successful
+
+    items = JSON.parse(response.body, symbolize_names: true)
+
+    expect(items[:data].length).to eq(10)
+
+    get "/api/v1/items/revenue?quantity=7"
+
+    items = JSON.parse(response.body, symbolize_names: true)
+
+    expect(items[:data].length).to eq(7)
   end
 end

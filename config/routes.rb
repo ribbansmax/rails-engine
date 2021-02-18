@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       end
       namespace :items do
         get "/find_all", to: "search#index"
+        get "/revenue", to: "revenue#index"
       end
       resources :merchants, only: %i[index show]
       get "/merchants/:id/items", to: "merchants#items_index"

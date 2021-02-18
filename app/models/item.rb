@@ -21,4 +21,8 @@ class Item < ApplicationRecord
     end
     items
   end
+
+  def self.by_revenue(quantity)
+    joins(invoice_items: {invoice: :transactions}).where("invoices.status='shipped' AND transactions.result='success'").group("items.id").select("items.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS revenue").order("revenue DESC").limit(quantity || 10)
+  end
 end
