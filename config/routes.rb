@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         get "/items", to: "items#index"
         get "/merchants", to: "merchants#index"
         get "/merchants/:id", to: "merchants#show"
+        get "/unshipped", to: "unshipped#index"
       end
       resources :merchants, only: %i[index show]
       get "/merchants/:id/items", to: "merchants#items_index"

@@ -8,6 +8,7 @@ describe 'revenue for unshipped orders' do
     item = create(:item, merchant: merchant)
     invoices.each_with_index do |invoice, index|
       create(:invoice_item, item: item, invoice: invoice, quantity: (index + 1))
+      create(:transaction, invoice: invoice, result: "success")
     end
 
     get "/api/v1/revenue/unshipped"
@@ -16,12 +17,18 @@ describe 'revenue for unshipped orders' do
 
     unshipped_info = JSON.parse(response.body, symbolize_names: true)
 
-    expect(unshipped_info.length).to eq(10)
+    expect(unshipped_info[:data].length).to eq(10)
 
     get "/api/v1/revenue/unshipped?quantity=7"
 
     unshipped_info = JSON.parse(response.body, symbolize_names: true)
 
-    expect(unshipped_info.length).to eq(7)
+    expect(unshipped_info[:data].length).to eq(7)
+
+    get "/api/v1/revenue/unshipped?quantity=100"
+
+    unshipped_info = JSON.parse(response.body, symbolize_names: true)
+
+    expect(unshipped_info[:data].length).to eq(11)
   end
 end
