@@ -42,6 +42,6 @@ describe "Merchant API" do
 
     expect(merchant_info.length).to eq(1)
 
-    expect(merchant_info[:data][:attributes][:name]).to eq(merchant.name)
+    expect(merchant_info[:data][:attributes][:revenue]).to eq(merchant.total_revenue.revenue)
   end
 end
