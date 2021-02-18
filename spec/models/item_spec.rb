@@ -27,5 +27,14 @@ RSpec.describe Item, type: :model do
 
       expect(Item.params_check(params)).to be true
     end
+
+    it "can fetch items by price" do
+      merchant = create(:merchant)
+      item = create(:item, merchant: merchant, unit_price: 5)
+      item2 = create(:item, merchant: merchant, unit_price: 10)
+      item3 = create(:item, merchant: merchant, unit_price: 6)
+
+      expect(Item.values_search({min_price: 6, max_price: 6})).to eq([item3])
+    end
   end
 end
