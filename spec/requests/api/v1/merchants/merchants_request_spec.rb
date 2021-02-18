@@ -66,7 +66,11 @@ describe "Merchants API" do
     merchant2 = create(:merchant)
     merchant3 = create(:merchant)
     customer = create(:customer)
-    items = create_list(:item, 11)
+    items = []
+    items << create_list(:item, 11, merchant: merchant)
+    items << create_list(:item, 11, merchant: merchant2)
+    items << create_list(:item, 11, merchant: merchant3)
+    items.flatten!
     invoice = create(:invoice, merchant: merchant, customer: customer)
     invoice2 = create(:invoice, merchant: merchant2, customer: customer)
     invoice3 = create(:invoice, merchant: merchant3, customer: customer)
@@ -76,21 +80,22 @@ describe "Merchants API" do
     items.each_with_index do |item, index|
       create(:invoice_item, item: item, invoice: invoice, quantity: (20 - index))
       create(:invoice_item, item: item, invoice: invoice2, quantity: (30 - index))
-      create(:invoice_item, item: item, invoice: invoice2, quantity: (25 - index))
+      create(:invoice_item, item: item, invoice: invoice3, quantity: (25 - index))
     end
 
     get "/api/v1/revenue/merchants"
 
     expect(response).to be_successful
 
-    items = JSON.parse(response.body, symbolize_names: true)
+    merchants = JSON.parse(response.body, symbolize_names: true)
 
-    expect(items[:data].length).to eq(10)
+    expect(merchants[:data].length).to eq(3)
 
     get "/api/v1/revenue/merchants?quantity=1"
 
-    items = JSON.parse(response.body, symbolize_names: true)
+    merchants = JSON.parse(response.body, symbolize_names: true)
 
-    expect(items[:data].length).to eq(1)
+    expect(merchants[:data].length).to eq(1)
+    expect(merchants[:data].first[:attributes][:name]).to eq(merchant2.name)
   end
 end

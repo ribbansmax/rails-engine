@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe "Items API" do
   it "sends a list of items" do
-    create_list(:item, 3)
+    merchant = create(:merchant)
+    create_list(:item, 3, merchant: merchant)
 
     get '/api/v1/items'
 
@@ -45,7 +46,7 @@ describe "Items API" do
   it "sends the top x items by revenue" do
     merchant = create(:merchant)
     customer = create(:customer)
-    items = create_list(:item, 11)
+    items = create_list(:item, 11, merchant: merchant)
     invoice = create(:invoice, merchant: merchant, customer: customer)
     transaction = create(:transaction, invoice: invoice, result: "success")
     items.each_with_index do |item, index|
