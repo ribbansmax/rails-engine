@@ -1,4 +1,4 @@
 class PotentialRevenueSerializer
   include JSONAPI::Serializer
-  attributes :revenue
+  attributes :potential_revenue
 end
