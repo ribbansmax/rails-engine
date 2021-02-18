@@ -52,7 +52,7 @@ describe "Items API" do
       create(:invoice_item, item: item, invoice: invoice, quantity: (20 - index))
     end
 
-    get "/api/v1/items/revenue"
+    get "/api/v1/revenue/items"
 
     expect(response).to be_successful
 
@@ -60,7 +60,7 @@ describe "Items API" do
 
     expect(items[:data].length).to eq(10)
 
-    get "/api/v1/items/revenue?quantity=7"
+    get "/api/v1/revenue/items?quantity=7"
 
     items = JSON.parse(response.body, symbolize_names: true)
 
