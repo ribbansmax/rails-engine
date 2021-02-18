@@ -5,4 +5,8 @@ class Merchant < ApplicationRecord
   def self.search(name)
     where('name ILIKE ?', "%#{name}%").first || {}
   end
+
+  def self.by_revenue(quantity)
+    joins(items: {invoice_items: {invoice: :transactions}}).where("invoices.status='shipped' AND transactions.result='success'").group("merchants.id").select("merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS revenue").order("revenue DESC").limit(quantity || 10)
+  end
 end
