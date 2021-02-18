@@ -40,7 +40,7 @@ describe "Merchant API" do
 
     merchant_info = JSON.parse(response.body, symbolize_names: true)
 
-    expect(merchant_info[:data].length).to eq(1)
+    expect(merchant_info.length).to eq(1)
 
     expect(merchant_info[:data][:attributes][:name]).to eq(merchant.name)
   end
